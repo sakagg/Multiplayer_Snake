@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="my.css">
+
+	</head>
+	<body>
+		<audi autoplay="2">
+			<source src="song3.mp3" type="audio/mp3">
+			<source src="song1.mp3" type="audio/mp3">
+			<source src="song3.mp3" type="audio/mp3">
+		</audio> 
+		<div id="top-line"></div>
+		<div id="nav-container">
+			<div id="nav">
+				<div id="nav-left">
+					SNAKETRIX
+				</div>
+				<div id="nav-right">
+					<div onclick="makeActive.bind(this)()" id="about-us" class="btn">About Us</div>
+					<div onclick="makeActive.bind(this)()" id="multip" class="btn">Multiplayer</div>
+					<div onclick="makeActive.bind(this)()" id="singlep" class="btn">Single Player</div>
+					<div onclick="makeActive.bind(this)()"id="home" class="btn active">Home</div>
+				</div>
+			</div>
+		</div>	
+		<div id="top-center-container">
+			<div id="top-center"><!--
+				--><img id="left-bar" class="sidebar" src="Images/sidebar-left.png"><!--
+				--><img id="top-center-img" src="Images/center-home.png"><!--
+				--><img id="right-bar" class="sidebar" src="Images/sidebar-right.png"><!--
+				--></div>
+		<div id="players"><!-- To be created when someone clicks on single or multiplayer-->
+			<!--<form name="input" action="send_to_2g_link.com" method="get">
+				Player1 Name: <input type="text" name="p1" /><input type="submit" name="Submit" value="Let's Play"><br />
+				Player2 Name: <input type="text" name="p2" /><input type="submit" name="Submit" value="Let's Play"><br />
+			</form>-->
+		</div>
+		<div id="center-container">
+			<div id="center">
+				
+				<div id="center-box">
+				<div id="center-bar"><img src="Images/center-bar.png"></div>
+					<div id="main-content">
+						<br>
+						<p>We have three different types of game modes :</p>
+						<p>Single Player :
+							<p id="main-content1" class="inner-content">Same old classic snake game . For more info. refer to Single Player option in the navigation bar.</p>
+						</p>
+						<p>OFFLINE Two Player :
+							<p id="main-content2" class="inner-content">Same old classic snake game but now with two players on same keyboard . For more info. refer to Multiplayer option in the navigation bar.</p>
+						</p>
+						<p>ONLINE Two Player :
+							<p id="main-content2" class="inner-content">This version is same as the above one but except it can be played online  . For more info. refer to Mulitiplayer option in the navigation bar.</p>
+						</p>
+					</div>
+				</div>	
+			</div>
+		</div>		
+			<script>
+		window.onload = function(){
+
+		};
+		function makeActive()
+		{
+			var a = document.getElementsByClassName('active')[0];
+			a.classList.remove("active");
+			this.classList.add("active");
+			var text,player_txt;
+			if(this.id=="about-us") 
+			{
+				text='<br />2g<br>ks<br>bondless';
+				document.getElementById("top-center-img").src="Images/center-about_us.png";
+				document.getElementById('main-content').innerHTML=text;
+				document.getElementById('players').innerHTML='';
+
+			}
+			else if(this.id=="singlep")
+			{
+				text='<br /><p class="single-content">This mode is very similar to the same old classic snake game . The rule is simple , eat as much as you can without hitting the obstacles and without biting yourself .</p>';
+				var p1='<p class="single-content">Controls :<p class="single-content">Up direction-key to move up</p>';
+				var p2='<p class="single-content">Left direction-key to move left</p>'
+				var p3='<p class="single-content">Right direction-key to move right</p>';
+				var p4='<p class="single-content">Down direction-key to move down</p>';
+				var p5='</p>';
+				var p6='<div id="player_name-conatainer"><div id="player_name"><form name="input" action="snake.php" method="post">';
+				var p7='Enter Your Name : <input type="text" name="type" value="0" style="display:none;"/><input type="text" name="name1" required/><br /><input type="submit" name="Submit" value="Let'
+				var p8='s Play"><br /></form></div></div>';
+				text=text+p1+p2+p3+p4+p5;
+				player_txt=p6+p7+p8;
+				document.getElementById("top-center-img").src="Images/center-single.png";
+				document.getElementById('main-content').innerHTML=text;
+				document.getElementById('players').innerHTML=player_txt;
+			}
+			else if(this.id=="multip")
+			{
+				text='<br /><p class="multi-content">This is the  two player mode where two players fight against each other to survive . It has some extra features other than just eating food and getting lazy . Play and explore . It has options of offline and online modes also. </p> ';
+				var p1='<p class="multi-content">In the offline mode two players can play the game  on a same keyboard . Controls for players will be :</p>';
+				var p2='<br><table width=50% class="multi-table">';
+				var p3='<tr><th>Direction</th><th>Player-1</th><th>Player-2</th></tr>';
+				var	p4='<tr><td>UP</td><td>Key Up</td><td>W</td></tr>';
+				var p5='<tr><td>LEFT</td><td>Key Left</td><td>A</td></tr>';	
+				var p6='<tr><td>RIGHT</td><td>Key Right</td><td>D</td></tr>';
+				var p7='<tr><td>DOWN</td><td>Key Down</td><td>S</td></tr></table>';
+				var p8='<div id="player_name-conatainer"><div id="player_name"><form id="forms" name="input" action="snake.php" method="post">';
+				var p9='Player 1 : <input id="type_id" type="hidden" name="type" value="1" /><input type="text" name="name1" required/><br />Player 2 : <input type="text" name="name2" required/><br /><input id="MOF" onclick="test(1)" type="submit" name="Submit" value="Play OFFLINE">'
+				var p10='<input id="MON" type="submit" name="Submit" value="Play ONLINE" onclick="test(2)">' 
+				var p11='<br /></form></div></div>';
+				var p12='<div id="name-info"><p>You can select any name for your opponent (Player 2)</p></div>'
+				text=text+p1+p2+p3+p4+p5+p6+p7;
+				player_txt=p8+p9+p10+p11+p12;
+				document.getElementById("top-center-img").src="Images/center-multi.png";
+				document.getElementById('main-content').innerHTML=text;
+				document.getElementById('players').innerHTML=player_txt;
+			} 
+			else if(this.id=="home") 
+			{
+				text='<br /><p>We have three different types of game modes :</p>';
+				var p1;
+				p1='<p>Single Player :<p id="main-content1" class="inner-content">Same old classic snake game . For more info. refer to Single Player option in the navigation bar.</p></p>';
+				var p2;
+				p2='<p>OFFLINE Two Player :<p id="main-content2" class="inner-content">Same old classic snake game but now with two players on same keyboard . For more info. refer to Multiplayer option in the navigation bar.</p></p>';
+				var p3;
+				p3='<p>ONLINE Two Player :<p id="main-content2" class="inner-content">This version is same as the above one but except it can be played online  . For more info. refer to Mulitiplayer option in the navigation bar.</p></p>';
+				text=text+p1+p2+p3;
+				document.getElementById("top-center-img").src="Images/center-home.png";
+				document.getElementById('main-content').innerHTML=text;			
+				document.getElementById('players').innerHTML='';
+			}
+		}
+		function test(v) {
+			document.getElementById('type_id').value=v;
+		}
+		</script>
+	</body>
+</html>
